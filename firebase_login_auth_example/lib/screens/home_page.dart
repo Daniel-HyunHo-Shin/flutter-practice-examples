@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 /// 플러터 Login시 보여지는 최초 화면 UI
 class HomePage extends StatefulWidget {
@@ -24,34 +25,16 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20.0,
-                width: 100,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Email'),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                ),
-                keyboardType: TextInputType.visiblePassword,
-              ),
-            ],
-          ),
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () => context.go('/EmailSignUpPage'),
+              child: const Text('Email Sign Up'),
+            ),
+            ElevatedButton(
+                onPressed: () => context.go('/EmailLogInPage'),
+                child: const Text('Email LogIn'))
+          ],
         ),
       ),
     );

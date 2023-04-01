@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'screens/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'utils/routers.dart';
 
 void main() async {
   // Firebase실행 전 Flutter Framework가 실행되게 하는 코드
@@ -19,12 +19,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
-
-      /// 실제 홈화면 UI 구성은 HomePage를 살펴보세요.
-      home: const HomePage(),
     );
   }
 }
