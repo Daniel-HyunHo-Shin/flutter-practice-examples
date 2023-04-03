@@ -9,6 +9,8 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(fireBaseAuthProvider);
 
+    final auth = ref.watch(authenticationProvider);
+
     return Scaffold(
       body: SafeArea(
         child: Column(

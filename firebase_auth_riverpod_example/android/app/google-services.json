@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "789714404654-c0999pbss2veqfum0t70fm2uqje980fr.apps.googleusercontent.com",
+          "client_id": "789714404654-6chh2etcnvovmbs1r0qmv4u0q6tnq9ns.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,8 +27,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "789714404654-c0999pbss2veqfum0t70fm2uqje980fr.apps.googleusercontent.com",
+              "client_id": "789714404654-6chh2etcnvovmbs1r0qmv4u0q6tnq9ns.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "789714404654-um9phtnkr711qacn5nh342obt3e1il0p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseAuthRiverpodExample"
+              }
             }
           ]
         }

@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginScreen extends StatefulWidget {
+import '../providers/auth_providers.dart';
+
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
-
-  //  A loading variable to show the loading animation when you a function is ongoing
-  bool _isLoading = false;
-  void loading() {
-    setState(() {
-      _isLoading = !_isLoading;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
+    final auth = ref.watch(authenticationProvider);
+
     return Scaffold(
       appBar: AppBar(
-        actions: [TextButton(onPressed: () {}, child: const Text('Skip'))],
+        actions: [
+          TextButton(
+              onPressed: () {
+                auth.signInAnonymously(context);
+              },
+              child: const Text('Skip'))
+        ],
       ),
       body: SafeArea(
         child: Form(
@@ -41,6 +44,28 @@ class _LoginScreenState extends State<LoginScreen> {
               Image.asset(
                 'assets/images/flag-dynamic-color.png',
                 height: 400,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    auth.signInWithGoogle(context);
+                  },
+                  icon: Image.asset(
+                    'assets/images/google.png',
+                    width: 35,
+                  ),
+                  label: const Text(
+                    'Continue with Google',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
