@@ -10,8 +10,17 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
+  //  TextEditingController to get the data from the TextFields
   final _email = TextEditingController();
   final _password = TextEditingController();
+
+  //  A loading variable to show the loading animation when you a function is ongoing
+  bool _isLoading = false;
+  void loading() {
+    setState(() {
+      _isLoading = !_isLoading;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -12,13 +12,20 @@ class AuthChecker extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Watch the authentication state using the authStateProvider
     final authState = ref.watch(authStateProvider);
+
+    // Handle the different states of the AsyncValue
     return authState.when(
         data: (data) {
+          // If user is authenticated, navigate to HomeScreen
           if (data != null) return const HomeScreen();
+          // If user is not authenticated, navigate to LoginScreen
           return const LoginScreen();
         },
+        // If state is loading, show a loading screen
         loading: () => const LoadingScreen(),
+        // If there's an error, show an error screen with the error message and stack trace
         error: (e, trace) => ErrorScreen(e, trace));
   }
 }

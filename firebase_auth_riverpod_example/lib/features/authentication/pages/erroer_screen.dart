@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// If Firebase initialization fails, an ErrorScreen will be displayed with a message explaining the error
 class ErrorScreen extends StatelessWidget {
   final Object e;
   final StackTrace? trace;

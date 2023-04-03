@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/show_error_dialog.dart';
 
+// This class contains methods that 'implement' various Firebase authentication features
 class FirebaseAuthMethods {
   final FirebaseAuth _auth;
   FirebaseAuthMethods(this._auth);
@@ -17,7 +18,7 @@ class FirebaseAuthMethods {
   // 3. signInWithGoogle
   // 4. signOut
 
-  // 1. 이메일 로그인 기능 구현 클래스
+  // This method signs in a user with email and password credentials
   Future<void> signInwithEmailAndPassword(
       String email, String password, BuildContext context) async {
     try {
@@ -27,14 +28,24 @@ class FirebaseAuthMethods {
     }
   }
 
-  // 2. 익명 로그인 클래스 구현
-  // UI에서는 'skip' 버튼으로 호출될 예정
-
+  // This method signs in an anonymous user
+  // It will be triggered by a 'skip' button on the UI
   Future<void> signInAnonymously(BuildContext context) async {
     try {
       await _auth.signInAnonymously();
     } on FirebaseAuthException catch (e) {
       await showErrorDialog(context, e);
     }
+  }
+
+  // This method signs in a user with Google credentials
+  // It is not yet implemented in this code sample
+  Future<void> signInWithGoogle() async {
+    // TODO: Implement sign in with Google
+  }
+
+  // This method signs the user out of the app
+  Future<void> signOut() async {
+    await _auth.signOut();
   }
 }
