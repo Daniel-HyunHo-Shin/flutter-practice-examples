@@ -5,6 +5,10 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        actions: [TextButton(onPressed: () {}, child: const Text('Skip'))],
+      ),
+    );
   }
 }
