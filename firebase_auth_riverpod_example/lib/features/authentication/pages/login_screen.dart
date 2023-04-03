@@ -30,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
           key: _formKey,
           child: Column(
             children: [
+              Image.asset('assets/images/flag-dynamic-color.png'),
               TextFormField(
                 controller: _email,
                 decoration: InputDecoration(

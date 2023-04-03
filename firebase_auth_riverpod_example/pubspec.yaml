@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    assets: 
+      - assets/images/
   flutter_riverpod: ^2.3.2
   firebase_auth: ^4.4.0
   firebase_core: ^2.9.0

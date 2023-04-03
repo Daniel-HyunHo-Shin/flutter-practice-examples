@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/show_error_dialog.dart';
+import '../widgets/show_error_dialog.dart';
 
 // This class contains methods that 'implement' various Firebase authentication features
 class FirebaseAuthMethods {
