@@ -9,7 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_riverpod: ^0.14.0+3
+  flutter_riverpod: ^2.3.2
+
   firebase_auth: ^3.0.2
   firebase_core: ^1.24.0
   google_sign_in: "^4.5.1"
