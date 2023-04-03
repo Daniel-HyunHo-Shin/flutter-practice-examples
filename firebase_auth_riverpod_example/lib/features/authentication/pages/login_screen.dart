@@ -1,16 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
+
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: SafeArea(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _email,
+                decoration: InputDecoration(
+                  hintText: 'Email address',
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  icon: Icon(Icons.email_outlined,
+                      color: Colors.blue.shade700, size: 24),
+                  alignLabelWithHint: true,
+                  border: InputBorder.none,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                controller: _password,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  hintStyle: const TextStyle(color: Colors.black54),
+                  icon: Icon(Icons.lock, color: Colors.blue.shade700, size: 24),
+                  alignLabelWithHint: true,
+                  border: InputBorder.none,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
