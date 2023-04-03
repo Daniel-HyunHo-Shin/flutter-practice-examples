@@ -75,6 +75,35 @@ class FirebaseAuthMethods {
     }
   }
 
+  Future<void> signUpWithEmailAndPassword(
+      String email, String password, BuildContext context) async {
+    try {
+      _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      await showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+                  title: const Text('Error Occured'),
+                  content: Text(e.toString()),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(ctx).pop();
+                        },
+                        child: const Text("OK"))
+                  ]));
+    } catch (e) {
+      if (e == 'email-already-in-use') {
+        // print('Email already in use.');
+      } else {
+        // print('Error: $e');
+      }
+    }
+  }
+
   // This method signs the user out of the app
   Future<void> signOut() async {
     await _auth.signOut();
