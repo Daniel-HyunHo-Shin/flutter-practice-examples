@@ -10,10 +10,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-  //  TextEditingController to get the data from the TextFields
-  final _email = TextEditingController();
-  final _password = TextEditingController();
-
   //  A loading variable to show the loading animation when you a function is ongoing
   bool _isLoading = false;
   void loading() {
@@ -25,35 +21,26 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [TextButton(onPressed: () {}, child: const Text('Skip'))],
+      ),
       body: SafeArea(
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              Image.asset('assets/images/flag-dynamic-color.png'),
-              TextFormField(
-                controller: _email,
-                decoration: InputDecoration(
-                  hintText: 'Email address',
-                  hintStyle: const TextStyle(color: Colors.black54),
-                  icon: Icon(Icons.email_outlined,
-                      color: Colors.blue.shade700, size: 24),
-                  alignLabelWithHint: true,
-                  border: InputBorder.none,
+              const SizedBox(height: 30),
+              const Text(
+                'Dive into anything',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              TextFormField(
-                controller: _password,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  hintStyle: const TextStyle(color: Colors.black54),
-                  icon: Icon(Icons.lock, color: Colors.blue.shade700, size: 24),
-                  alignLabelWithHint: true,
-                  border: InputBorder.none,
-                ),
+              Image.asset(
+                'assets/images/flag-dynamic-color.png',
+                height: 400,
               ),
             ],
           ),

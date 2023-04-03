@@ -44,6 +44,8 @@ class MainApp extends ConsumerWidget {
         // Then, Build the app UI using MaterialApp.router().
         final router = createRouter();
         return MaterialApp.router(
+          theme: ThemeData(useMaterial3: true),
+          debugShowCheckedModeBanner: false,
           routerConfig: router,
         );
       },

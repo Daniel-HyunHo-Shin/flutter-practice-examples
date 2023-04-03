@@ -1,4 +1,4 @@
-import 'package:firebase_auth_riverpod_example/features/authentication/pages/home_screen.dart';
+import 'package:firebase_auth_riverpod_example/features/authentication/models/auth_checker.dart';
 import 'package:go_router/go_router.dart';
 
 GoRouter createRouter() {
@@ -6,7 +6,7 @@ GoRouter createRouter() {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const HomeScreen(),
+        builder: (context, state) => const AuthChecker(),
       ),
     ],
   );
