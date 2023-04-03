@@ -63,9 +63,10 @@ class FirebaseAuthMethods {
 
   Future<void> signInAnonymously(BuildContext context) async {
     try {
-      _auth
-    } catch (e) {
-      
+      await _auth.signInAnonymously();
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message!)));
     }
   }
 }
