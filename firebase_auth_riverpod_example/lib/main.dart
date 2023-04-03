@@ -1,3 +1,6 @@
+import 'package:firebase_auth_riverpod_example/features/authentication/pages/erroer_screen.dart';
+import 'package:firebase_auth_riverpod_example/features/authentication/pages/loading_screen.dart';
+import 'package:firebase_auth_riverpod_example/utils/routers.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,7 +11,7 @@ void main() {
   runApp(const ProviderScope(child: MainApp()));
 }
 
-//  Firebase 실행확인을 Riverpod를 통해 확인한다.
+//  Firebase 실행을 Riverpod를 통해 확인한다.
 // 이 방법으로 Loading / error state를 구현할 수 있다.
 final firebaseinitializerProvider = FutureProvider<FirebaseApp>((ref) async {
   return await Firebase.initializeApp();
@@ -19,11 +22,22 @@ class MainApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // initialize의 결과는 총 3가지 이다.
+    // 1. 정상 실행: FirebaseApp 반환
+    // 2. TIMEOUT: Firebase실행 시간이 10초 이상 걸릴 경우 timeout error 반환
+    // 3. 에러: FirebaseException 반환
     final initialize = ref.watch(firebaseinitializerProvider);
 
     // Go router package를 이용할 것이므로 MaterialApp.router
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
+    return initialize.when(
+      data: (firebaseApp) {
+        final router = createRouter();
+        return MaterialApp.router(
+          routerConfig: router,
+        );
+      },
+      loading: () => const LoadingScreen(),
+      error: (error, stackTrace) => ErrorScreen(error, stackTrace),
     );
   }
 }
