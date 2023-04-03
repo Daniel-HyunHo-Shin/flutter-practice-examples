@@ -5,6 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'firebase_options.dart';
+
 void main() {
   // Ensure flutter framework to be initialized
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +16,9 @@ void main() {
 //  Firebase 실행을 Riverpod를 통해 확인한다.
 // 이 방법으로 Loading / error state를 구현할 수 있다.
 final firebaseinitializerProvider = FutureProvider<FirebaseApp>((ref) async {
-  return await Firebase.initializeApp();
+  return await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 });
 
 class MainApp extends ConsumerWidget {
@@ -28,7 +32,7 @@ class MainApp extends ConsumerWidget {
     // 3. 에러: FirebaseException 반환
     final initialize = ref.watch(firebaseinitializerProvider);
 
-    // Go router package를 이용할 것이므로 MaterialApp.router
+    // Render the app with the fetched data
     return initialize.when(
       data: (firebaseApp) {
         final router = createRouter();
@@ -36,8 +40,11 @@ class MainApp extends ConsumerWidget {
           routerConfig: router,
         );
       },
-      loading: () => const LoadingScreen(),
-      error: (error, stackTrace) => ErrorScreen(error, stackTrace),
+      // lodaing의 경우
+      loading: () => const MaterialApp(home: LoadingScreen()),
+      // error시 erorSCreen
+      error: (error, stackTrace) =>
+          MaterialApp(home: ErrorScreen(error, stackTrace)),
     );
   }
 }
