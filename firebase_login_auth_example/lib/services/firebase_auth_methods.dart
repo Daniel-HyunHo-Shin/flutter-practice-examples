@@ -60,4 +60,12 @@ class FirebaseAuthMethods {
           .showSnackBar(SnackBar(content: Text(e.message!)));
     }
   }
+
+  Future<void> signInAnonymously(BuildContext context) async {
+    try {
+      _auth
+    } catch (e) {
+      
+    }
+  }
 }
