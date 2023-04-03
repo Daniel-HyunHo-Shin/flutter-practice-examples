@@ -12,6 +12,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Reddit App Tutorial",
+      debugShowCheckedModeBanner: false,
       theme: Pallete.lightModeAppTheme,
       home: const Scaffold(
         body: Center(
