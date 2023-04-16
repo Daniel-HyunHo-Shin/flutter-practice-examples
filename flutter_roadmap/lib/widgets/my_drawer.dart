@@ -39,6 +39,7 @@ class MyDrawer extends StatelessWidget {
             title: const Text('Flutter Roadmap'),
             onTap: () {
               context.go('/');
+              Navigator.pop(context);
             },
           ),
           ListTile(
