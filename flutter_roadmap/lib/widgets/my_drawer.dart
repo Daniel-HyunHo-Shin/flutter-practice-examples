@@ -51,6 +51,7 @@ class MyDrawer extends StatelessWidget {
             leading: const Icon(Icons.analytics),
             title: const Text('Statistics'),
             onTap: () {
+              Navigator.pop(context);
               context.push('/statistics');
             },
           ),

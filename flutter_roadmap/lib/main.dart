@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'pages/home_scren.dart';
+import 'pages/flutter_screen.dart';
 import 'pages/progress_screen.dart';
 
 final _router = GoRouter(routes: [
   GoRoute(
     path: '/',
-    builder: (context, state) => const HomeScreen(),
+    builder: (context, state) => const FlutterRoadMapScreen(),
   ),
   GoRoute(
     path: '/statistics',

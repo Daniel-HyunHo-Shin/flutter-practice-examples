@@ -18,7 +18,7 @@ class MyHeatMap extends StatelessWidget {
         DateTime(2023, 4, 13): 6,
       },
       colorsets: const {
-        1: Colors.red,
+        1: Colors.green,
         3: Colors.orange,
         5: Colors.yellow,
         7: Colors.green,
