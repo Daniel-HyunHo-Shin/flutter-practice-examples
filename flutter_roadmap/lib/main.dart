@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'pages/home_scren.dart';
+import 'pages/progress_screen.dart';
 
 final _router = GoRouter(routes: [
   GoRoute(
     path: '/',
     builder: (context, state) => const HomeScreen(),
+  ),
+  GoRoute(
+    path: '/statistics',
+    builder: (context, state) => const StatScreen(),
   ),
 ]);
 
@@ -21,6 +26,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, primarySwatch: Colors.grey),
       darkTheme: ThemeData.dark(useMaterial3: true),
       routerConfig: _router,
