@@ -15,7 +15,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: ListView(
-        children: const [HabitTile()],
+        children: const [
+          HabitTile(),
+          HabitTile(),
+          HabitTile(),
+        ],
       ),
     );
   }
