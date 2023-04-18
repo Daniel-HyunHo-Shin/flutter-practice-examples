@@ -10,15 +10,31 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+// data structure for todays list
+  List todayHabitList = [
+    ["Morning Run", false],
+    ["Read Book", false],
+  ];
+
+  bool currentHabitState = false;
+
+  // 체크박스 탭  상황
+  void checkBoxTapped(bool? value) {
+    setState(() {
+      currentHabitState = value!;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: ListView(
-        children: const [
-          HabitTile(),
-          HabitTile(),
-          HabitTile(),
+        children: [
+          HabitTile(
+              habitName: "morning run",
+              value: currentHabitState,
+              onChanged: (value) => checkBoxTapped(value)),
         ],
       ),
     );
