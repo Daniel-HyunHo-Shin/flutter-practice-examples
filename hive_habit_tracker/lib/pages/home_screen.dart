@@ -28,13 +28,31 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // save new habit
+  void saveNewHabit() {
+    todayHabitList.add([_newHabitNameController.text, false]);
+    _newHabitNameController.clear();
+    Navigator.of(context).pop();
+  }
+
+  // cancel new habit
+  void cancelNewHabit() {
+    _newHabitNameController.clear();
+    Navigator.of(context).pop();
+  }
+
   // create a new habit
+  final _newHabitNameController = TextEditingController();
   void createNewHabit() {
     // show a alert dialog for user to enter the new habit details
     showDialog(
         context: context,
         builder: (context) {
-          return const EnterNewHabitBox();
+          return EnterNewHabitBox(
+            controller: _newHabitNameController,
+            onSave: saveNewHabit,
+            onCancel: cancelNewHabit,
+          );
         });
   }
 
