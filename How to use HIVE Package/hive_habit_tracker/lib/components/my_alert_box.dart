@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class MyAlertBox extends StatelessWidget {
   final TextEditingController controller;
+  final String? hintText;
   final VoidCallback onSave;
   final VoidCallback onCancel;
 
@@ -10,6 +11,7 @@ class MyAlertBox extends StatelessWidget {
     required this.controller,
     required this.onSave,
     required this.onCancel,
+    this.hintText,
   });
 
   @override
@@ -17,9 +19,10 @@ class MyAlertBox extends StatelessWidget {
     return AlertDialog(
       content: TextField(
         controller: controller,
-        decoration: const InputDecoration(
-          enabledBorder: OutlineInputBorder(),
-          focusedBorder: OutlineInputBorder(),
+        decoration: InputDecoration(
+          hintText: hintText,
+          enabledBorder: const OutlineInputBorder(),
+          focusedBorder: const OutlineInputBorder(),
         ),
       ),
       actions: [

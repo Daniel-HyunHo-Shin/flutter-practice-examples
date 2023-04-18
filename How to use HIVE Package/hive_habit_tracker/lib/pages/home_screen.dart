@@ -56,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (context) {
           return MyAlertBox(
+            hintText: 'New Habit',
             controller: _newHabitNameController,
             onSave: saveNewHabit,
             onCancel: cancelNewHabit,
@@ -69,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       builder: (context) {
         return MyAlertBox(
+            hintText: 'New Name',
             controller: _newHabitNameController,
             onSave: () => saveExisitingHabit(index),
             onCancel: cancelNewHabit);

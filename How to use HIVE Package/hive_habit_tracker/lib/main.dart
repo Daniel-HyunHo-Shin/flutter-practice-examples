@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'pages/home_screen.dart';
 
-void main(List<String> args) {
+void main(List<String> args) async {
+  // initialzie hive
+  await Hive.initFlutter();
   runApp(const MainApp());
+
+  // open a box
+  await Hive.openBox("Habit_Database");
 }
 
 class MainApp extends StatelessWidget {
