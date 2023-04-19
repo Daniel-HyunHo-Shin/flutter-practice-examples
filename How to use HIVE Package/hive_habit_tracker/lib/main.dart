@@ -6,10 +6,10 @@ import 'pages/home_screen.dart';
 void main(List<String> args) async {
   // initialzie hive
   await Hive.initFlutter();
-  runApp(const MainApp());
-
   // open a box
+
   await Hive.openBox("Habit_Database");
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {

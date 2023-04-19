@@ -24,12 +24,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // If the app is the first time opening it or not
     // Then create the default box
-    if (_myBox.get('Current_Habit_List') == null) {
+    if (_myBox.get('CURRENT_HABIT_LIST') == null) {
       db.createDefaultData();
     } else {
+      // Else Load data from hive box
       db.loadData();
     }
-
+    db.updateDatabase();
     super.initState();
   }
 
@@ -38,20 +39,20 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       db.todaysHabitList[index][1] = value!;
     });
+    db.updateDatabase();
   }
 
   // save new habit
   void saveNewHabit() {
-    // add new habitto the today habit list
+    // add new habit to the today habit list
     setState(() {
       db.todaysHabitList.add([_newHabitNameController.text, false]);
     });
-
     // clear textfield
     _newHabitNameController.clear();
-
     // pop dialog box
     Navigator.of(context).pop();
+    db.updateDatabase();
   }
 
   // cancel new habit
@@ -97,6 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     _newHabitNameController.clear();
     Navigator.pop(context);
+    db.updateDatabase();
   }
 
 // delete selcted habit
@@ -104,6 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       db.todaysHabitList.removeAt(index);
     });
+    db.updateDatabase();
   }
 
   @override
