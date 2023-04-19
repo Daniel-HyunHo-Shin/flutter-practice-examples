@@ -15,10 +15,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 // data structure for todays list
-  HabitDatabase db = HabitDatabase();
+  HabitDataModel db = HabitDataModel();
   final _myBox = Hive.box("Habit_Database");
-
-  bool currentHabitState = false;
 
   @override
   void initState() {

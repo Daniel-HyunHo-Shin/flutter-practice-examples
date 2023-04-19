@@ -1,4 +1,8 @@
-// return todays date formatted as yyyymmdd
+/// 이 파일에서는 날짜 관련 함수 3가지를 정의하고 있습니다.
+///
+
+/// todaysDateFormatted함수는 오늘 날짜를 yyyymmdd의 String으로 반환합니다.
+/// 반환된 값은 Box에서
 String todaysDateFormatted() {
   // today
   var dateTimeObject = DateTime.now();
