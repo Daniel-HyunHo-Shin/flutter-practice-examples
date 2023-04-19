@@ -22,11 +22,25 @@ class _TikTokFeedState extends State<TikTokFeed> {
     _fetchFlashcards();
   }
 
+  void _precacheImages() {
+    for (int i = 0; i < _flashcards.length; i++) {
+      if (i + 1 < _flashcards.length) {
+        precacheImage(NetworkImage(_flashcards[i + 1].imageUrl), context);
+      }
+      if (i + 2 < _flashcards.length) {
+        precacheImage(NetworkImage(_flashcards[i + 2].imageUrl), context);
+      } else {
+        break;
+      }
+    }
+  }
+
   Future<void> _fetchFlashcards() async {
     List<Flashcard> flashcards = await _flashcardController.getFlashcards();
     setState(() {
       _flashcards = flashcards;
     });
+    _precacheImages();
   }
 
   @override
