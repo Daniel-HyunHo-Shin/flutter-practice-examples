@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_habit_tracker/data/habit_database.dart';
 
 import '../components/floating_action_button.dart';
 import '../components/habit_tile.dart';
@@ -13,18 +15,28 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 // data structure for todays list
-  List todayHabitList = [
-    // [habit name, currentHabitState]
-    ["Morning Run", false],
-    ["Read Book", false],
-  ];
+  HabitDatabase db = HabitDatabase();
+  final _myBox = Hive.box("Habit_Database");
 
   bool currentHabitState = false;
+
+  @override
+  void initState() {
+    // If the app is the first time opening it or not
+    // Then create the default box
+    if (_myBox.get('Current_Habit_List') == null) {
+      db.createDefaultData();
+    } else {
+      db.loadData();
+    }
+
+    super.initState();
+  }
 
   // checkbox is tapped
   void checkBoxTapped(bool? value, int index) {
     setState(() {
-      todayHabitList[index][1] = value!;
+      db.todaysHabitList[index][1] = value!;
     });
   }
 
@@ -32,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void saveNewHabit() {
     // add new habitto the today habit list
     setState(() {
-      todayHabitList.add([_newHabitNameController.text, false]);
+      db.todaysHabitList.add([_newHabitNameController.text, false]);
     });
 
     // clear textfield
@@ -81,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // save exisitng habit with a new name
   void saveExisitingHabit(int index) {
     setState(() {
-      todayHabitList[index][0] = _newHabitNameController.text;
+      db.todaysHabitList[index][0] = _newHabitNameController.text;
     });
     _newHabitNameController.clear();
     Navigator.pop(context);
@@ -90,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
 // delete selcted habit
   void deleteHabit(int index) {
     setState(() {
-      todayHabitList.removeAt(index);
+      db.todaysHabitList.removeAt(index);
     });
   }
 
@@ -104,11 +116,11 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       body: ListView.builder(
-        itemCount: todayHabitList.length,
+        itemCount: db.todaysHabitList.length,
         itemBuilder: (context, index) {
           return HabitTile(
-            habitName: todayHabitList[index][0],
-            value: todayHabitList[index][1],
+            habitName: db.todaysHabitList[index][0],
+            value: db.todaysHabitList[index][1],
             onChanged: (value) => checkBoxTapped(value, index),
             settingTapped: (context) => openHabitSettings(index),
             deleteTapped: (context) => deleteHabit(index),
