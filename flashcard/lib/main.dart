@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'pages/homepage.dart';
+import 'views/tiktok_feed.dart.dart';
 
 void main(List<String> args) {
   runApp(const MainApp());
@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey),
       ),
-      home: const HomePage(),
+      home: const TikTokFeed(),
     );
   }
 }

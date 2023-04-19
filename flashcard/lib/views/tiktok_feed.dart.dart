@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../data/flash_card_feed_Item.dart';
+import '../models/flashcard.dart';
+import 'flash_card_feed_Item.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class TikTokFeed extends StatefulWidget {
+  const TikTokFeed({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<TikTokFeed> createState() => _TikTokFeedState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _TikTokFeedState extends State<TikTokFeed> {
   final PageController _pageController = PageController();
 
   List<Flashcard> flashcards = [

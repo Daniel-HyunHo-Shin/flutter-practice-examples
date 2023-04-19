@@ -1,17 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 
-// Flashcard class
-class Flashcard {
-  final String id;
-  final String question;
-  final String answer;
-  final String imageUrl;
-
-  Flashcard(
-      {required this.question, required this.answer, required this.imageUrl})
-      : id = const Uuid().v4();
-}
+import '../models/flashcard.dart';
 
 class FlashcardFeedItem extends StatefulWidget {
   final Flashcard flashcard;
