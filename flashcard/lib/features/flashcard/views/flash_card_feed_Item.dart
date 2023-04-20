@@ -62,14 +62,10 @@ class _FlashcardFeedItemState extends State<FlashcardFeedItem> {
                 children: [
                   ElevatedButton(
                     onPressed: _isFlipped ? _goToNextPage : null,
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
                     child: const Text('Fail'),
                   ),
                   ElevatedButton(
                     onPressed: _isFlipped ? _goToNextPage : null,
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.green),
                     child: const Text('Pass'),
                   ),
                 ],
