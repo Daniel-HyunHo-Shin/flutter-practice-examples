@@ -3,12 +3,14 @@ class Flashcard {
   final String question;
   final String answer;
   final String imageUrl;
+  final String audioUrl;
 
   Flashcard({
     required this.id,
     required this.question,
     required this.answer,
     required this.imageUrl,
+    required this.audioUrl,
   });
 
   factory Flashcard.fromMap(Map<String, dynamic> data, String documentId) {
@@ -17,6 +19,7 @@ class Flashcard {
       question: data['question'] ?? '',
       answer: data['answer'] ?? '',
       imageUrl: data['imageUrl'] ?? '',
+      audioUrl: data['audioUrl'] ?? '',
     );
   }
 }

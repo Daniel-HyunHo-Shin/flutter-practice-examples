@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../../../common_widgets/flashcard_audio_player.dart';
 import '../models/flashcard.dart';
 
 class FlashcardFeedItem extends StatefulWidget {
@@ -21,6 +21,10 @@ class _FlashcardFeedItemState extends State<FlashcardFeedItem> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
+  }
+
+  void _onAudioToggle() {
+    setState(() {});
   }
 
   @override
@@ -45,11 +49,19 @@ class _FlashcardFeedItemState extends State<FlashcardFeedItem> {
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 _isFlipped
-                    ? widget.flashcard.question
-                    : widget.flashcard.answer,
+                    ? widget.flashcard.answer
+                    : widget.flashcard.question,
                 style: const TextStyle(fontSize: 32, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
+            ),
+          ),
+          Positioned(
+            top: 16,
+            right: 16,
+            child: FlashcardAudioPlayer(
+              audioUrl: widget.flashcard.audioUrl,
+              onToggle: _onAudioToggle,
             ),
           ),
           if (_isFlipped)

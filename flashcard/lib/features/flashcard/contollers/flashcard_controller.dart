@@ -17,7 +17,6 @@ class FlashcardController {
     } catch (e) {
       print('Error fetching flashcards: $e');
     }
-
     return flashcards;
   }
 }
