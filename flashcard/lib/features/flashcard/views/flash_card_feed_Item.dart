@@ -1,3 +1,4 @@
+import 'package:flashcard/common_widgets/flashcard_audio_button.dart';
 import 'package:flutter/material.dart';
 import '../models/flashcard.dart';
 
@@ -24,7 +25,7 @@ class _FlashcardFeedItemState extends State<FlashcardFeedItem> {
   void _goToNextPage() {
     // Function to navigate to the next flashcard using the page controller
     widget.pageController.nextPage(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 1),
       curve: Curves.easeInOut,
     );
   }
@@ -64,7 +65,11 @@ class _FlashcardFeedItemState extends State<FlashcardFeedItem> {
             ),
           ),
           // An audio player for the flashcard audio, with a toggle button
-
+          const Positioned(
+            bottom: 80,
+            right: 20,
+            child: FlashcardAudioButton(),
+          ),
           if (_isFlipped)
             // If the card is flipped, show pass/fail buttons
             Positioned(
