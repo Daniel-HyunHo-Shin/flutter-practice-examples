@@ -5,10 +5,10 @@ import 'firebase_options.dart';
 import 'features/flashcard/views/tiktok_feed.dart.dart';
 
 void main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   runApp(const MainApp());
 }
 
