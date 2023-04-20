@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../flashcard/views/flashcard_feed_page.dart';
 import '../providers/auth_provider.dart';
 import '../views/erroer_screen.dart';
-import '../views/loader.dart';
+import '../../../common_widgets/loader.dart';
 import '../views/login_screen.dart';
 
 class AuthChecker extends ConsumerWidget {

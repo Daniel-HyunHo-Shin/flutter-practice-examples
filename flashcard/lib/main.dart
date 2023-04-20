@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'features/auth/controllers/auth_controller.dart';
 import 'features/auth/views/erroer_screen.dart';
-import 'features/auth/views/loader.dart';
+import 'common_widgets/loader.dart';
 import 'firebase_options.dart';
 import 'router/router.dart';
 
