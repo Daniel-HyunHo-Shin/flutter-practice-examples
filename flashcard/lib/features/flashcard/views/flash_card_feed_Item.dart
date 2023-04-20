@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../common_widgets/flashcard_audio_player.dart';
 import '../models/flashcard.dart';
 
 class FlashcardFeedItem extends StatefulWidget {
@@ -28,11 +27,6 @@ class _FlashcardFeedItemState extends State<FlashcardFeedItem> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
-  }
-
-  void _onAudioToggle() {
-    // Function to handle the audio player toggle
-    setState(() {});
   }
 
   @override
@@ -70,14 +64,7 @@ class _FlashcardFeedItemState extends State<FlashcardFeedItem> {
             ),
           ),
           // An audio player for the flashcard audio, with a toggle button
-          Positioned(
-            top: 16,
-            right: 16,
-            child: FlashcardAudioPlayer(
-              audioUrl: widget.flashcard.audioUrl,
-              onToggle: _onAudioToggle,
-            ),
-          ),
+
           if (_isFlipped)
             // If the card is flipped, show pass/fail buttons
             Positioned(

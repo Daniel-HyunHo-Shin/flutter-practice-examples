@@ -26,9 +26,11 @@ class _TikTokFeedState extends State<TikTokFeed> {
     for (int i = 0; i < _flashcards.length; i++) {
       if (i + 1 < _flashcards.length) {
         precacheImage(NetworkImage(_flashcards[i + 1].imageUrl), context);
+        precacheImage(NetworkImage(_flashcards[i + 1].audioUrl), context);
       }
       if (i + 2 < _flashcards.length) {
         precacheImage(NetworkImage(_flashcards[i + 2].imageUrl), context);
+        precacheImage(NetworkImage(_flashcards[i + 1].audioUrl), context);
       } else {
         break;
       }
