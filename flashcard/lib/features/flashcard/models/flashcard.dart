@@ -4,6 +4,8 @@ class Flashcard {
   final String answer;
   final String imageUrl;
   final String audioUrl;
+  final int reviewInterval;
+  final DateTime nextReviewDate;
 
   Flashcard({
     required this.id,
@@ -11,6 +13,8 @@ class Flashcard {
     required this.answer,
     required this.imageUrl,
     required this.audioUrl,
+    required this.reviewInterval,
+    required this.nextReviewDate,
   });
 
   factory Flashcard.fromMap(Map<String, dynamic> data, String documentId) {
@@ -20,6 +24,11 @@ class Flashcard {
       answer: data['answer'] ?? '',
       imageUrl: data['imageUrl'] ?? '',
       audioUrl: data['audioUrl'] ?? '',
+      reviewInterval: data['reviewInterval'] ?? 1,
+      nextReviewDate: data['nextReviewDate'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(
+              data['nextReviewDate'].seconds * 1000)
+          : DateTime.now(),
     );
   }
 }
