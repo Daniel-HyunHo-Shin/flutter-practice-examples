@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../contollers/flashcard_controller.dart';
 import '../models/flashcard.dart';
-import 'flash_card_feed_Item.dart';
+import 'flash_card_feed_item.dart';
 
 class TikTokFeed extends StatefulWidget {
   const TikTokFeed({super.key});
@@ -50,7 +50,10 @@ class _TikTokFeedState extends State<TikTokFeed> {
       scrollDirection: Axis.vertical,
       itemCount: _flashcards.length,
       itemBuilder: (context, index) {
-        return FlashcardFeedItem(flashcard: _flashcards[index]);
+        return FlashcardFeedItem(
+          flashcard: _flashcards[index],
+          pageController: _pageController,
+        );
       },
     );
   }
