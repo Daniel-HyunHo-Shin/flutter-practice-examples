@@ -20,8 +20,6 @@ class SignInPage extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
-          // _signInAnonymously에는 ()를 붙이지 않는다.
-          // 붙일 경우 build()가 호출될 때마다 _signInAnonymously가 호출되기 때문이다.
           onPressed: _signInAnonymously,
           child: const Text('Sign In'),
         ),
