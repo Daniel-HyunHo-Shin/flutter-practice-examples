@@ -1,3 +1,3 @@
-# to_do_list
+# Less Build Practice
 
 A new Flutter project.
