@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_tracker/data/dummy_data.dart';
+import 'package:recipe_tracker/providers/meals_provider.dart';
 import 'package:recipe_tracker/screens/categories_screen.dart';
 import 'package:recipe_tracker/screens/fliters_screen.dart';
 import 'package:recipe_tracker/screens/meals_screen.dart';
 import 'package:recipe_tracker/widgets/main_drawer.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/meal_model.dart';
 
@@ -13,14 +14,14 @@ const kInitialFilters = {
   Filter.lactosFree: false,
 };
 
-class TabScreen extends StatefulWidget {
+class TabScreen extends ConsumerStatefulWidget {
   const TabScreen({super.key});
 
   @override
-  State<TabScreen> createState() => _TabScreenState();
+  ConsumerState<TabScreen> createState() => _TabScreenState();
 }
 
-class _TabScreenState extends State<TabScreen> {
+class _TabScreenState extends ConsumerState<TabScreen> {
   // Index to manage BottomAppNavigation
   int _selectedPageIndex = 0;
 
@@ -78,7 +79,8 @@ class _TabScreenState extends State<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final availableMeals = dummyMeals.where((meal) {
+    final meals = ref.watch(mealsProvider);
+    final availableMeals = meals.where((meal) {
       if (_selectedFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
         return false;
       }
