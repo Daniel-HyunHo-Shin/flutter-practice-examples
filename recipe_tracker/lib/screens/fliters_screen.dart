@@ -1,32 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum Filter {
-  glutenFree,
-  lactosFree,
-}
+import '../providers/filters_provider.dart';
 
-class FilteresSceen extends StatefulWidget {
-  const FilteresSceen({super.key, required this.currentFilters});
-
-  final Map<Filter, bool> currentFilters;
+class FilteresSceen extends ConsumerWidget {
+  const FilteresSceen({super.key});
 
   @override
-  State<FilteresSceen> createState() => _FilteresSceenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final activeFilters = ref.watch(filteresProvider);
 
-class _FilteresSceenState extends State<FilteresSceen> {
-  var _glutenFreeFilterSet = false;
-  var _lactoseFreeFilterSet = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _glutenFreeFilterSet = widget.currentFilters[Filter.glutenFree]!;
-    _lactoseFreeFilterSet = widget.currentFilters[Filter.lactosFree]!;
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Filters'),
@@ -44,59 +27,49 @@ class _FilteresSceenState extends State<FilteresSceen> {
       //     }
       //   }),
       // ),
-      body: WillPopScope(
-        onWillPop: () async {
-          // Pop method return the value to the Navigator.push that routes our app to this page
-          Navigator.of(context).pop({
-            Filter.glutenFree: _glutenFreeFilterSet,
-            Filter.lactosFree: _lactoseFreeFilterSet,
-          });
-          return false;
-        },
-        child: Column(
-          children: [
-            SwitchListTile(
-              value: _glutenFreeFilterSet,
-              onChanged: (isChecked) {
-                setState(() {
-                  _glutenFreeFilterSet = isChecked;
-                });
-              },
-              title: const Text(
-                'Gluten-free',
-              ),
-              subtitle: Text(
-                'Only include gluten-free meals',
-                style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
-              ),
-              activeColor: Theme.of(context).colorScheme.tertiary,
-              contentPadding: const EdgeInsets.only(left: 34, right: 22),
+      body: Column(
+        children: [
+          SwitchListTile(
+            value: activeFilters[Filter.glutenFree]!,
+            onChanged: (isChecked) {
+              ref
+                  .read(filteresProvider.notifier)
+                  .setFilter(Filter.glutenFree, isChecked);
+            },
+            title: const Text(
+              'Gluten-free',
             ),
-            //
-            //
-            SwitchListTile(
-              value: _lactoseFreeFilterSet,
-              onChanged: (isChecked) {
-                setState(() {
-                  _lactoseFreeFilterSet = isChecked;
-                });
-              },
-              title: const Text(
-                'Lactose-free',
-              ),
-              subtitle: Text(
-                'Only include Lactose-free meals',
-                style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
-              ),
-              activeColor: Theme.of(context).colorScheme.tertiary,
-              contentPadding: const EdgeInsets.only(left: 34, right: 22),
+            subtitle: Text(
+              'Only include gluten-free meals',
+              style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
             ),
-          ],
-        ),
+            activeColor: Theme.of(context).colorScheme.tertiary,
+            contentPadding: const EdgeInsets.only(left: 34, right: 22),
+          ),
+          //
+          //
+          SwitchListTile(
+            value: activeFilters[Filter.lactosFree]!,
+            onChanged: (isChecked) {
+              ref
+                  .read(filteresProvider.notifier)
+                  .setFilter(Filter.glutenFree, isChecked);
+            },
+            title: const Text(
+              'Lactose-free',
+            ),
+            subtitle: Text(
+              'Only include Lactose-free meals',
+              style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground,
+                  ),
+            ),
+            activeColor: Theme.of(context).colorScheme.tertiary,
+            contentPadding: const EdgeInsets.only(left: 34, right: 22),
+          ),
+        ],
       ),
     );
   }

@@ -5,15 +5,14 @@ import 'package:recipe_tracker/widgets/meal_item.dart';
 import '../models/meal_model.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen(
-      {super.key,
-      this.title,
-      required this.mealList,
-      required this.onToggleFavorite});
+  const MealsScreen({
+    super.key,
+    this.title,
+    required this.mealList,
+  });
 
   final String? title;
   final List<Meal> mealList;
-  final void Function(Meal meal) onToggleFavorite;
 
   // Define a navigaition fuction on the screen that has a button.
   void _selectedMeal(BuildContext context, Meal meal) {
@@ -21,7 +20,6 @@ class MealsScreen extends StatelessWidget {
       MaterialPageRoute(
         builder: (ctx) => MealDetailsScreen(
           meal: meal,
-          onToggleFavorite: onToggleFavorite,
         ),
       ),
     );
