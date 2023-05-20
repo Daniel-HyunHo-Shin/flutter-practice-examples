@@ -13,10 +13,13 @@ class GroceryList extends StatefulWidget {
 }
 
 class _GroceryListState extends State<GroceryList> {
+  /// final List can be increased/decreased. To prevent that use const.
   final List<GroceryItem> _groceryItems = [];
 
   void _addItem() async {
-    // 'push' It can return value on pop and it's await
+    /// 'push' It can return value on pop and it's await
+    /// Here we will practice how to add item in a new page and get the added item
+    /// added item will be listed on the current screen.
     final newItem = await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => const NewItem(),
@@ -26,6 +29,8 @@ class _GroceryListState extends State<GroceryList> {
     if (newItem == null) {
       return;
     }
+
+    /// Whenever you see a change in the list and apply those change use setState to update screen.
     setState(() {
       _groceryItems.add(newItem);
     });
@@ -41,13 +46,19 @@ class _GroceryListState extends State<GroceryList> {
   Widget build(BuildContext context) {
     Widget content = const Center(child: Text('No items added yet.'));
 
+    /// Show the content of the screen conditionlaly
+    ///
     if (_groceryItems.isNotEmpty) {
       content = ListView.builder(
         itemCount: _groceryItems.length,
+
+        /// OnDissmised we call _removeItem fnc to remove item from the list
         itemBuilder: (ctx, index) => Dismissible(
           onDismissed: (direction) {
             _removeItem(_groceryItems[index]);
           },
+
+          // Each Listtile must have a value key so that it won't cause error on the element tree
           key: ValueKey(_groceryItems[index].id),
           child: ListTile(
             title: Text(_groceryItems[index].name),
