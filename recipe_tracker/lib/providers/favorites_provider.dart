@@ -8,6 +8,7 @@ class FavoriteMealsNotifier extends StateNotifier<List<Meal>> {
   FavoriteMealsNotifier() : super([]);
 
   bool toggleMealFavoriteStatus(Meal meal) {
+    // State is an object inside super() here. It's an empty list here
     final mealIsFavorite = state.contains(meal);
 
     /// Return a new State with following business logic:
@@ -26,6 +27,7 @@ class FavoriteMealsNotifier extends StateNotifier<List<Meal>> {
   }
 }
 
+// Provider -> Notifier -> Target data with
 final favoriteMealsProvider =
     StateNotifierProvider<FavoriteMealsNotifier, List<Meal>>(
   (ref) {
