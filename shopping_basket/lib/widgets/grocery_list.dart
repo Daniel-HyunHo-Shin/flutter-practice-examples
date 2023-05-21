@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_basket/data/categories.dart';
 import 'package:shopping_basket/widgets/new_item.dart';
-
+import 'package:http/http.dart' as http;
 import '../models/grocery_item_model.dart';
+import 'dart:convert';
 
 class GroceryList extends StatefulWidget {
   const GroceryList({
@@ -14,7 +16,36 @@ class GroceryList extends StatefulWidget {
 
 class _GroceryListState extends State<GroceryList> {
   /// final List can be increased/decreased. To prevent that use const.
-  final List<GroceryItem> _groceryItems = [];
+  List<GroceryItem> _groceryItems = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadItem();
+  }
+
+  void _loadItem() async {
+    final url = Uri.https('my-tiktok-flashcard-default-rtdb.firebaseio.com',
+        'shopping-list.json');
+    final response = await http.get(url);
+    final Map<String, dynamic> listData = json.decode(response.body);
+    final List<GroceryItem> loadedItems = [];
+    for (final item in listData.entries) {
+      final category = categories.entries
+          .firstWhere((catItem) => catItem.value.type == item.value['category'])
+          .value;
+      loadedItems.add(
+        GroceryItem(
+            id: item.key,
+            name: item.value['name'],
+            quantity: item.value['quantity'],
+            category: category),
+      );
+    }
+    setState(() {
+      _groceryItems = loadedItems;
+    });
+  }
 
   void _addItem() async {
     /// 'push' It can return value on pop and it's await
