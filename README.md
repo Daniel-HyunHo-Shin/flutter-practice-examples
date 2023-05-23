@@ -1,3 +1,3 @@
 # FlutterExamples
 
-These are flutter apps that I made to learn flutter.
+13 apps made with flutter. 
