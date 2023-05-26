@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:map_app/providers.dart';
+import 'package:map_app/widgets/image_input.dart';
+import 'package:map_app/widgets/location_input.dart';
 
 class AddPlaceScreen extends ConsumerStatefulWidget {
   const AddPlaceScreen({super.key});
@@ -10,31 +14,23 @@ class AddPlaceScreen extends ConsumerStatefulWidget {
 }
 
 class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
-  ///
   void _savePlace() {
-    /// 1. 저장 대상 지정
-    /// 2. validation
-    /// 3. update state
-    /// 4. navigatior pop
-
-    // 1.
     final enteredText = _titleController.text;
 
-    // 2.
-    if (enteredText.isEmpty) {
+    if (enteredText.isEmpty || _selectedImage == null) {
       return;
     }
 
-    // 3.
-    ref.read(userPlacesProvider.notifier).addPlace(enteredText);
-
-    // 4.
+    ref
+        .read(userPlacesProvider.notifier)
+        .addPlace(enteredText, _selectedImage!);
     Navigator.of(context).pop();
   }
 
   var favoritePlaces = [];
 
   final _titleController = TextEditingController();
+  File? _selectedImage;
 
   @override
   void dispose() {
@@ -58,6 +54,15 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
             ),
             const SizedBox(
               height: 10,
+            ),
+            const LocationInput(),
+            const SizedBox(
+              height: 10,
+            ),
+            ImageInput(
+              onPickImage: (image) {
+                _selectedImage = image;
+              },
             ),
             FilledButton.icon(
               icon: const Icon(Icons.add),

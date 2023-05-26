@@ -11,6 +11,13 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^2.3.6
   google_fonts: ^4.0.4
+  http: ^1.0.0
+  image_picker: ^0.8.7+5
+  location:
+    git:
+      url: https://github.com/781flyingdutchman/flutterlocation.git
+      ref: V4
+      path: packages/location
   uuid: ^3.0.7
 
 dev_dependencies:
