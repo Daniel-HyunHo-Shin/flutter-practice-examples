@@ -16,10 +16,6 @@ class Todo {
   final String description;
   final bool completed;
 
-  // Todo는 기본적으로 immutable합니다.
-  // 기존에 만들어진 Todo의 configuration을 활용하여 새로운 Todo를 만들 때는
-  // copyWith method를 활용합니다.
-
   Todo copyWith({
     String? id,
     String? description,

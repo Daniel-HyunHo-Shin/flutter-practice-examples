@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_statenotifier_example/provider.dart';
-import 'package:riverpod_statenotifier_example/todo_model.dart';
+import 'package:riverpod_statenotifier_example/providers/provider.dart';
+import 'package:riverpod_statenotifier_example/models/todo_model.dart';
 
 class AddScreen extends ConsumerStatefulWidget {
   const AddScreen({super.key});

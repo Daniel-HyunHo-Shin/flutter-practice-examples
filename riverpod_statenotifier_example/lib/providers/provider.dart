@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'todo_model.dart';
+import '../models/todo_model.dart';
 
 ///
 /// State Object의 변경은 interface를 통해서만 이루어 집니다.
