@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "759436154994",
+    "project_id": "fir-flutter-colelab",
+    "storage_bucket": "fir-flutter-colelab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759436154994:android:fac57e2b2a3f9061f44aeb",
+        "android_client_info": {
+          "package_name": "com.example.complete"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWmaORBPunPENowbdgkxgW07nQNK0sjBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
