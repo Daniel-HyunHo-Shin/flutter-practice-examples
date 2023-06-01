@@ -39,7 +39,7 @@ class Controller {
 
   List<Product> getFilteredList() {
     final sortType = ref.watch(productSortTypeProvider);
-    final products = ref.watch(repositoryProvider).mockData;
+    final products = ref.watch(repositoryProvider).fetchProducts();
     switch (sortType) {
       case ProductSortType.name:
         products.sort(

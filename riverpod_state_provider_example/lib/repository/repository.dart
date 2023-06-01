@@ -2,18 +2,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/product.dart';
 
-final repositoryProvider = Provider((ref) => Repository(mockData: _products));
+final repositoryProvider = Provider((ref) => Repository(dataBase: Database()));
 
 class Repository {
-  final List<Product> mockData;
+  final Database dataBase;
+
+  List<Product> fetchProducts() {
+    return Database.data;
+  }
+
   Repository({
-    required this.mockData,
+    required this.dataBase,
   });
 }
 
-final _products = [
-  const Product(name: 'Appple', price: 4),
-  const Product(name: 'Banana', price: 3),
-  const Product(name: 'Orange', price: 2),
-  const Product(name: 'Coffee', price: 1),
-];
+class Database {
+  static const data = [
+    Product(name: 'Appple', price: 4),
+    Product(name: 'Banana', price: 3),
+    Product(name: 'Orange', price: 2),
+    Product(name: 'Coffee', price: 1),
+  ];
+}
