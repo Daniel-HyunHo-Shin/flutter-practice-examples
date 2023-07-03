@@ -14,6 +14,9 @@
     "categories": {
       "auth": {
         "amplifytrips96d5dfd3": {}
+      },
+      "api": {
+        "amplifytrips": {}
       }
     }
   }
