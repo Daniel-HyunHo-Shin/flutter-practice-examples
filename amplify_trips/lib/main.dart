@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 // Amplify Flutter Packages
 
 // Generated in previous step
-import 'amplifyconfiguration.dart';
 
 void main() {
   runApp(const MainApp());
