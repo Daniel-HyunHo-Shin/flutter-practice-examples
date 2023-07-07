@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rest_api_example/user/view/login_screen.dart';
+import 'package:rest_api_example/user/view/splash_screen.dart';
 
 void main() {
   runApp(const _App());
@@ -15,7 +15,7 @@ class _App extends StatelessWidget {
         fontFamily: 'NotoSans',
       ),
       debugShowCheckedModeBanner: false,
-      home: const LoginSceen(),
+      home: const SplashScreen(),
     );
   }
 }

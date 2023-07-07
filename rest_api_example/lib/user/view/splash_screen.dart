@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // initState에는 async를 사용할 수 없기 때문에 checkToken함수를 만든다
+    // initState에는 async를 사용할 수 없기 때문에
     checkToken();
   }
 
