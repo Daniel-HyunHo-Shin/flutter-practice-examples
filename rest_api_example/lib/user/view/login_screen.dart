@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:rest_api_example/common/component/custom_text_form_field.dart';
 import 'package:rest_api_example/common/const/colors.dart';
+import 'package:rest_api_example/common/const/data.dart';
 import 'package:rest_api_example/common/layout/default_layout.dart';
 import 'package:rest_api_example/common/view/root_tap.dart';
 
@@ -64,14 +65,18 @@ class _LoginSceenState extends State<LoginSceen> {
                   onPressed: () async {
                     // id: password
                     final rawString = '$userName:$password';
+
                     Codec<String, String> stringToBase64 = utf8.fuse(base64);
                     String token = stringToBase64.encode(rawString);
-
                     final resp = await dio.post('http://$ip/auth/login',
                         options: Options(
                             headers: {'authorization': 'Basic $token'}));
 
-                    print(resp.data);
+                    final refreshToken = resp.data['refreshToken'];
+                    final accessToken = resp.data['accessToken'];
+
+                    storage.write(key: refreshTokenKey, value: refreshToken);
+                    storage.write(key: accessTokenKey, value: accessToken);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: primaryColor,
