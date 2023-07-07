@@ -6,9 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:rest_api_example/common/component/custom_text_form_field.dart';
 import 'package:rest_api_example/common/const/colors.dart';
 import 'package:rest_api_example/common/layout/default_layout.dart';
+import 'package:rest_api_example/common/view/root_tap.dart';
 
-class LoginSceen extends StatelessWidget {
+class LoginSceen extends StatefulWidget {
   const LoginSceen({super.key});
+
+  @override
+  State<LoginSceen> createState() => _LoginSceenState();
+}
+
+class _LoginSceenState extends State<LoginSceen> {
+  String userName = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +45,17 @@ class LoginSceen extends StatelessWidget {
                   'asset/img/misc/logo.png',
                 ),
                 CustomTextFormField(
-                  onChanged: (String value) {},
+                  onChanged: (String value) {
+                    userName = value;
+                  },
                   obscureText: true,
                   hintText: '이메일을 입력해 주세요',
                 ),
                 const SizedBox(height: 16.0),
                 CustomTextFormField(
-                  onChanged: (String value) {},
+                  onChanged: (String value) {
+                    password = value;
+                  },
                   obscureText: true,
                   hintText: '비밀번호를 입력해 주세요',
                 ),
@@ -50,7 +63,7 @@ class LoginSceen extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () async {
                     // id: password
-                    const rawString = 'test@codefactory.ai:testtest';
+                    final rawString = '$userName:$password';
                     Codec<String, String> stringToBase64 = utf8.fuse(base64);
                     String token = stringToBase64.encode(rawString);
 
@@ -73,6 +86,11 @@ class LoginSceen extends StatelessWidget {
                       'http://$ip/auth/token',
                       options: Options(
                         headers: {'authorization': 'Bearer $refreshToken'},
+                      ),
+                    );
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const RootTab(),
                       ),
                     );
                     print(resp.data);
