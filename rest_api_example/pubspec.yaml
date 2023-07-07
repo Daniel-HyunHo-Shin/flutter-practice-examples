@@ -1,10 +1,10 @@
 name: rest_api_example
 description: A new Flutter project.
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
+  sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
   flutter:
@@ -17,3 +17,24 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - asset/img/misc/
+    - asset/img/food/
+    - asset/svg/icon/
+    - asset/img/logo/
+    - asset/rive/
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: asset/fonts/NotoSansKR-Black.otf
+          weight: 900
+        - asset: asset/fonts/NotoSansKR-Bold.otf
+          weight: 700
+        - asset: asset/fonts/NotoSansKR-Medium.otf
+          weight: 500
+        - asset: asset/fonts/NotoSansKR-Regular.otf
+          weight: 400
+        - asset: asset/fonts/NotoSansKR-Light.otf
+          weight: 300
+        - asset: asset/fonts/NotoSansKR-Thin.otf
+          weight: 100

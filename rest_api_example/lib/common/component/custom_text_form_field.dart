@@ -40,6 +40,7 @@ class CustomTextFormField extends StatelessWidget {
         fillColor: inputBGColor,
         filled: true,
         border: baseBorder,
+        enabledBorder: baseBorder,
         focusedBorder: baseBorder.copyWith(
           borderSide: const BorderSide(
             color: primaryColor,

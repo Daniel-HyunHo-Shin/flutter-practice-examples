@@ -10,9 +10,12 @@ class _App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'NotoSans',
+      ),
       debugShowCheckedModeBanner: false,
-      home: LoginSceen(),
+      home: const LoginSceen(),
     );
   }
 }
